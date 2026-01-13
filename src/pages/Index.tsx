@@ -218,9 +218,15 @@ const homeKitchen = [
   { name: 'Storage & organization', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&h=150&fit=crop' },
 ];
 
+const heroBanners = [
+  { image: heroBanner, alt: 'The New iPhone Experience' },
+  { image: watchBanner, alt: 'Watch Timeless Elegance' },
+];
+
 const Index: React.FC = () => {
   const { t, currencySymbol } = useLanguage();
   const [countdown, setCountdown] = useState({ hours: 18, minutes: 33, seconds: 24 });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -244,15 +250,23 @@ const Index: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroBanners.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroBanners.length) % heroBanners.length);
+  };
+
   return (
     <Layout>
       {/* Hero Banner */}
       <section className="relative">
         <div className="w-full h-48 md:h-64 lg:h-80 overflow-hidden">
           <img
-            src={heroBanner}
-            alt="The New iPhone Experience"
-            className="w-full h-full object-cover"
+            src={heroBanners[currentSlide].image}
+            alt={heroBanners[currentSlide].alt}
+            className="w-full h-full object-cover transition-all duration-500"
           />
           <div className="absolute inset-0 flex items-center">
             <div className="container mx-auto px-4">
@@ -266,27 +280,44 @@ const Index: React.FC = () => {
         </div>
 
         {/* Carousel Controls */}
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-background transition-colors">
+        <button 
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-background transition-colors"
+        >
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-background transition-colors">
+        <button 
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-background transition-colors"
+        >
           <ChevronRight className="w-5 h-5" />
         </button>
+
+        {/* Dots indicator */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+          {heroBanners.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`w-2 h-2 rounded-full transition-colors ${i === currentSlide ? 'bg-primary' : 'bg-primary/30'}`}
+            />
+          ))}
+        </div>
       </section>
 
       {/* Categories */}
       <section className="container mx-auto px-4 py-6">
-        <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
           {categories.map((cat, idx) => (
             <Link
               key={idx}
               to={`/products?category=${cat.name.toLowerCase().replace(/ & /g, '-')}`}
-              className="flex-shrink-0 text-center group"
+              className="text-center group"
             >
-              <div className="w-24 h-24 md:w-28 md:h-28 rounded-lg overflow-hidden border border-border group-hover:border-primary transition-colors mb-2">
+              <div className="aspect-square rounded-lg overflow-hidden border border-border group-hover:border-primary transition-colors mb-2">
                 <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
               </div>
-              <span className="text-xs font-medium text-foreground">{cat.name}</span>
+              <span className="text-[10px] md:text-xs font-medium text-foreground leading-tight block">{cat.name}</span>
             </Link>
           ))}
         </div>
@@ -411,14 +442,14 @@ const Index: React.FC = () => {
       {/* Women's Fashion */}
       <section className="container mx-auto px-4 py-6">
         <h2 className="text-lg md:text-xl font-bold text-foreground mb-4">{t('womens_fashion')}</h2>
-        <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
           {womensFashion.map((item, idx) => (
             <Link
               key={idx}
               to={`/products?category=womens-${item.name.toLowerCase()}`}
-              className="flex-shrink-0 text-center group"
+              className="text-center group"
             >
-              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2">
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
               <span className="text-xs font-medium text-foreground">{item.name}</span>
@@ -430,14 +461,14 @@ const Index: React.FC = () => {
       {/* Men's Fashion */}
       <section className="container mx-auto px-4 py-6">
         <h2 className="text-lg md:text-xl font-bold text-foreground mb-4">{t('mens_fashion')}</h2>
-        <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
           {mensFashion.map((item, idx) => (
             <Link
               key={idx}
               to={`/products?category=mens-${item.name.toLowerCase()}`}
-              className="flex-shrink-0 text-center group"
+              className="text-center group"
             >
-              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2">
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
               <span className="text-xs font-medium text-foreground">{item.name}</span>
@@ -449,14 +480,14 @@ const Index: React.FC = () => {
       {/* Home & Kitchen */}
       <section className="container mx-auto px-4 py-6 mb-8">
         <h2 className="text-lg md:text-xl font-bold text-foreground mb-4">{t('home_kitchen')}</h2>
-        <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
           {homeKitchen.map((item, idx) => (
             <Link
               key={idx}
               to={`/products?category=home-${item.name.toLowerCase()}`}
-              className="flex-shrink-0 text-center group"
+              className="text-center group"
             >
-              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2">
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
               <span className="text-xs font-medium text-foreground">{item.name}</span>
