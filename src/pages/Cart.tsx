@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trash2, Heart, Star } from 'lucide-react';
+import { Trash2, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import ProductCard from '@/components/ProductCard';
@@ -113,12 +113,23 @@ const CartPage: React.FC = () => {
   return (
     <Layout>
       {/* Banner */}
-      <div className="w-full h-32 md:h-48 overflow-hidden">
+      <div className="w-full h-24 md:h-32 overflow-hidden relative">
         <img
           src={sportsBanner}
           alt="50% OFF Sports Shoes"
           className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-4">
+              <span className="text-3xl md:text-5xl font-black text-primary-foreground">50%<span className="text-lg md:text-2xl">OFF</span></span>
+              <div>
+                <h2 className="text-xl md:text-3xl font-bold text-red italic">SPORTS SHOES</h2>
+                <p className="text-xs md:text-sm text-primary-foreground/80">Comfort That Moves With You</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-6">
@@ -128,7 +139,7 @@ const CartPage: React.FC = () => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-card border border-border rounded-lg p-4 flex flex-col sm:flex-row gap-4"
+                className="bg-card border border-border rounded-xl p-4 md:p-6 flex flex-col sm:flex-row gap-4"
               >
                 {/* Product Image */}
                 <div className="w-full sm:w-36 h-36 flex-shrink-0 bg-muted rounded-lg overflow-hidden">
@@ -182,7 +193,7 @@ const CartPage: React.FC = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-card border border-border rounded-lg p-6 sticky top-24">
+            <div className="bg-card border border-border rounded-xl p-6 sticky top-24">
               {/* Coupon */}
               <div className="mb-6">
                 <p className="text-sm font-medium text-foreground mb-2">{t('got_coupon')}</p>

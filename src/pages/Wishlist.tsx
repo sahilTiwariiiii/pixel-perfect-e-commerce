@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trash2, Star } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import QuantitySelector from '@/components/QuantitySelector';
 import RatingStars from '@/components/RatingStars';
@@ -70,12 +70,24 @@ const WishlistPage: React.FC = () => {
   return (
     <Layout>
       {/* Banner */}
-      <div className="w-full h-32 md:h-48 overflow-hidden">
+      <div className="w-full h-24 md:h-32 overflow-hidden relative">
         <img
           src={groceryBanner}
           alt="Daily Grocery Best Quality"
           className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-4xl font-black text-primary-foreground italic">DAILY GROCERY</h2>
+            <h3 className="text-xl md:text-3xl font-black text-accent italic">BEST QUALITY</h3>
+          </div>
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden md:block">
+            <div className="bg-red text-primary-foreground px-4 py-2 rounded-lg">
+              <p className="text-xs font-medium">DELIVERY</p>
+              <p className="text-lg font-bold">IN MINUTES</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-6">
@@ -83,10 +95,10 @@ const WishlistPage: React.FC = () => {
           {items.map((item) => (
             <div
               key={item.id}
-              className="bg-card border border-border rounded-lg p-4 flex flex-col md:flex-row gap-4"
+              className="bg-card border border-border rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-4"
             >
               {/* Product Image */}
-              <div className="w-full md:w-40 h-40 flex-shrink-0 bg-muted rounded-lg overflow-hidden">
+              <div className="w-full md:w-44 h-44 flex-shrink-0 bg-muted rounded-lg overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -96,12 +108,12 @@ const WishlistPage: React.FC = () => {
 
               {/* Product Details */}
               <div className="flex-1">
-                <h3 className="font-medium text-foreground mb-2">{item.name}</h3>
+                <h3 className="font-medium text-foreground mb-2 text-lg">{item.name}</h3>
 
                 {/* Rating */}
                 <div className="flex items-center gap-2 mb-2">
                   <RatingStars rating={item.rating} size="sm" />
-                  <span className="text-sm text-foreground">{item.rating}</span>
+                  <span className="text-sm text-foreground font-medium">{item.rating}</span>
                   <span className="text-sm text-primary underline cursor-pointer">
                     {item.reviewCount} {t('review')}
                   </span>
@@ -131,11 +143,13 @@ const WishlistPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-2 mt-4">
-                  <button className="btn-primary px-6 py-2 text-sm">{t('add_to_cart')}</button>
+                <div className="flex flex-col gap-2 mt-4 w-full md:w-auto">
+                  <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
+                    {t('add_to_cart')}
+                  </button>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="flex items-center justify-center gap-1 text-sm text-red hover:underline"
+                    className="flex items-center justify-center gap-1 text-sm text-red hover:underline py-1"
                   >
                     <Trash2 className="w-4 h-4" />
                     {t('remove')}
