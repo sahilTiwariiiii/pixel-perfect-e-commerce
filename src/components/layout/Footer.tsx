@@ -80,14 +80,22 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      {/* Decorative Angular Wave */}
-      <div className="relative h-16 bg-background">
-        <div 
-          className="absolute inset-0 bg-primary"
-          style={{
-            clipPath: 'polygon(0 100%, 100% 0, 100% 100%, 0 100%)'
-          }}
-        />
+      {/* Decorative Curved Wave */}
+      <div className="relative">
+        <svg 
+          viewBox="0 0 1440 80" 
+          className="w-full h-16 md:h-20"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0,0 L0,40 Q360,80 720,40 Q1080,0 1440,40 L1440,0 Z" 
+            fill="hsl(var(--background))"
+          />
+          <path 
+            d="M0,40 Q360,80 720,40 Q1080,0 1440,40 L1440,80 L0,80 Z" 
+            fill="hsl(var(--primary))"
+          />
+        </svg>
       </div>
 
       {/* Main Footer */}
