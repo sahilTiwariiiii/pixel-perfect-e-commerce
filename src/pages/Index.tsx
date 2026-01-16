@@ -449,10 +449,12 @@ const Index: React.FC = () => {
               to={`/products?category=womens-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+              <div className="flex flex-col items-center">
+                <div className="aspect-square w-full max-w-[140px] md:max-w-[160px] rounded-2xl bg-muted/50 overflow-hidden mb-3 group-hover:shadow-lg transition-shadow">
+                  <img src={item.image} alt={item.name} className="w-full h-full object-cover object-center" />
+                </div>
+                <span className="text-sm font-medium text-foreground">{item.name}</span>
               </div>
-              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
@@ -468,10 +470,12 @@ const Index: React.FC = () => {
               to={`/products?category=mens-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+              <div className="flex flex-col items-center">
+                <div className="aspect-square w-full max-w-[140px] md:max-w-[160px] rounded-2xl bg-muted/50 overflow-hidden mb-3 group-hover:shadow-lg transition-shadow">
+                  <img src={item.image} alt={item.name} className="w-full h-full object-cover object-center" />
+                </div>
+                <span className="text-sm font-medium text-foreground">{item.name}</span>
               </div>
-              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
@@ -487,10 +491,12 @@ const Index: React.FC = () => {
               to={`/products?category=home-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+              <div className="flex flex-col items-center">
+                <div className="aspect-square w-full max-w-[140px] md:max-w-[160px] rounded-2xl bg-muted/50 overflow-hidden mb-3 group-hover:shadow-lg transition-shadow">
+                  <img src={item.image} alt={item.name} className="w-full h-full object-cover object-center" />
+                </div>
+                <span className="text-sm font-medium text-foreground">{item.name}</span>
               </div>
-              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
