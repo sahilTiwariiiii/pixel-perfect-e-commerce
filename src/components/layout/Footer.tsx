@@ -80,8 +80,15 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-primary text-primary-foreground">
-      {/* Decorative Wave */}
-      <div className="h-2 bg-gradient-orange" />
+      {/* Decorative Angular Wave */}
+      <div className="relative h-16 bg-background">
+        <div 
+          className="absolute inset-0 bg-primary"
+          style={{
+            clipPath: 'polygon(0 100%, 100% 0, 100% 100%, 0 100%)'
+          }}
+        />
+      </div>
 
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-10">
