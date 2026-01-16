@@ -449,12 +449,10 @@ const Index: React.FC = () => {
               to={`/products?category=womens-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="bg-muted rounded-2xl overflow-hidden group-hover:shadow-lg transition-all duration-300 p-3">
-                <div className="aspect-square rounded-xl overflow-hidden mb-3">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                </div>
-                <span className="text-sm font-semibold text-foreground block">{item.name}</span>
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
+                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
+              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
@@ -470,12 +468,10 @@ const Index: React.FC = () => {
               to={`/products?category=mens-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="bg-muted rounded-2xl overflow-hidden group-hover:shadow-lg transition-all duration-300 p-3">
-                <div className="aspect-square rounded-xl overflow-hidden mb-3">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                </div>
-                <span className="text-sm font-semibold text-foreground block">{item.name}</span>
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
+                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
+              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
@@ -491,12 +487,10 @@ const Index: React.FC = () => {
               to={`/products?category=home-${item.name.toLowerCase()}`}
               className="text-center group"
             >
-              <div className="bg-muted rounded-2xl overflow-hidden group-hover:shadow-lg transition-all duration-300 p-3">
-                <div className="aspect-square rounded-xl overflow-hidden mb-3">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                </div>
-                <span className="text-sm font-semibold text-foreground block">{item.name}</span>
+              <div className="aspect-square rounded-full overflow-hidden border-2 border-border group-hover:border-primary transition-colors mb-2 mx-auto max-w-[120px] md:max-w-[140px]">
+                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
+              <span className="text-xs font-medium text-foreground">{item.name}</span>
             </Link>
           ))}
         </div>
